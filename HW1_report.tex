@@ -1,0 +1,56 @@
+\documentclass{article}
+\usepackage{amssymb}
+
+
+\input{header}
+
+
+\title{CS5787: Exercises 1 \\ \begin{small}\url{https://github.com/eminalparslan/CS-5787-Assignment-1}\end{small}}
+\author{Mingshu Liu \\ ml2837 \and \textbf{Emin Arslan} \\ eaa84}
+
+\date{09/12/2024}
+
+\colmfinalcopy
+\begin{document}
+\maketitle
+
+\section{Theory: Question 1 [12.5 pts]}
+
+\begin{itemize}
+    \item[(a)] The shape of the input $X$ will be $\mathbb {R}^{m\times 10}$
+    \item[(b)] The shape of the $W_n$ will be $\mathbb {R}^{10\times 50}$ \\
+    The shape of Bias vector will be ${R}^{50}$
+    \item[(c)] The shape of the $W_o$ will be $\mathbb {R}^{50\times 4}$ \\
+    The shape of  $B_o$ will be ${R}^{3}$
+    \item[(d)] The shape of the output matrix Y will be $\mathbb{R}^{m \times 3}$
+    \item[(e)] The equation will be $Y = ReLU(X\cdot W_n + b_n)\cdot W_o + b_o$
+\end{itemize}
+
+\section{Theory: Question 2 [12.5 pts]}
+
+\begin{itemize}
+    \item The first layer: $3 \times 3 \times 3 + 1 = 28 \times 100 = 2800$
+    \item The second layer:  $3 \times 3 \times 100 + 1 = 901 \times 200 = 180200$
+    \item  The third layer: $3 \times 3 \times 200 + 1 = 1801 \times 400 = 720400$
+    \item Total parameter: 2800 + 180200 + 720400 = 903400
+\end{itemize}
+
+\section{Theory: Question 3 [25 pts]}
+
+\begin{itemize}
+    \item[(a)] Since $\frac{\partial y_i}{\partial \gamma} = \hat{x_i}$, we can get $\frac{\partial f}{\partial \gamma} = \sum_{i=1}^{m} \frac{\partial f}{\partial y_i} \cdot \frac{\partial y_i}{\partial \gamma} = \sum_{i=1}^{m} \frac{\partial f}{\partial y_i} \cdot \hat{x_i}$ 
+    
+    \item[(b)] Since $\frac{\partial y_i}{\partial \beta} = 1$, we can get $\frac{\partial f}{\partial \beta} = \sum_{i=1}^{m} \frac{\partial f}{\partial y_i} \cdot \frac{\partial y_i}{\partial \beta} = \sum_{i=1}^{m} \frac{\partial f}{\partial y_i}$
+    
+    \item[(c)] Since $\frac{\partial y_i}{\partial \hat{x_i}} = \gamma $ and $\hat{x_i}$ is a single sample, we can get $\frac{\partial f}{\partial \hat{x_i}} = \frac{\partial f}{\partial y_i} \cdot \frac{\partial y_i}{\partial \hat{x_i}} = \frac{\partial f}{\partial y_i} \cdot \gamma$
+    
+    \item[(d)] Since $\frac{\partial \hat{x_i}}{\partial \sigma_B ^2} = -\frac{1}{2} \cdot (x_i - \mu_B) \cdot (\sigma_B^2 + \epsilon)^{-\frac{3}{2}}$, we can get $\frac{\partial f}{\partial \sigma_B ^2} = \sum_{i=1}^{m} \frac{\partial f}{\partial \hat{x_i}} \cdot \frac{\partial \hat{x_i}}{\partial{\sigma_B ^2}} \\ =\sum_{i=1}^{m} \frac{\partial f}{\partial \hat{x_i}} \cdot (-\frac{1}{2} \cdot (x_i - \mu_B) \cdot (\sigma_B^2 + \epsilon)^{-\frac{3}{2}}) $
+    
+    \item[(e)] Since $\frac{\partial \hat{x_i}}{\partial \mu_B} = -\frac{1}{\sqrt{\sigma_B^2 + \epsilon}}$, we can get $\frac{\partial f}{\partial \mu_B} = \sum_{i=1}^{m} \frac{\partial f}{\partial \hat{x_i}} \cdot \frac{\partial \hat{x_i}}{\partial{\mu_B}} = \sum_{i=1}^{m} \frac{\partial f}{\partial \hat{x_i}} \cdot (-\frac{1}{\sqrt{\sigma_B^2 + \epsilon}})$
+
+    \item[(f)] We can derive the formula $\frac{\partial f}{\partial x_i} = \frac{\partial f}{\partial \hat{x_i}} \cdot \frac{\partial \hat{x_i}}{\partial x_i} + \frac{\partial f}{\partial \mu_B} \cdot \frac{\partial \mu_B}{\partial x_i} + \frac{\partial f}{\partial \sigma_B^2} \cdot \frac{\partial \sigma_B^2}{\partial x_i}$ and plug in the value we already have. After that, we can get the formula: \\ $\frac{\partial f}{\partial x_i} = \frac{\partial f}{\partial \hat{x_i}} \cdot \frac{1}{\sqrt{\sigma_B^2+\epsilon}} + \frac{\partial f}{\partial \mu_B} \cdot \frac{1}{m} + \frac{\partial f}{\partial \sigma_B^2} \cdot \frac{2 \cdot (x_i - \mu_B)}{m}$
+
+\end{itemize}
+
+
+\end{document}
