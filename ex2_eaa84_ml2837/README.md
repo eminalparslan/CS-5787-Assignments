@@ -99,9 +99,11 @@ We used LSTM and GRU models with the following architecture:
 | 14    | 98.1  | 100.9  | 94.7         | 97.9        |
 | 15    | 98.1  | 100.9  | 94.7         | 97.8        |
 
-
-
-
+## Result
+- LSTM and GRU models show similar performance in terms of perplexity reduction. GRU models tend to slightly outperform LSTM models in both training and validation/test perplexities, particularly in the early epochs. Across all models, the perplexity consistently decreases over epochs, indicating convergence.
+- Dropout generally leads to slightly worse training perplexity but improves validation and test perplexities, suggesting better generalization. This is expected, as dropout helps in reducing overfitting.
+- Both LSTM and GRU models show rapid improvement in perplexity within the first few epochs, after which the rate of improvement slows down.
+- GRU models performance slightly better
 
 
 
